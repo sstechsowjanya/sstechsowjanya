@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="38f1fd71-eb7a-450f-8c33-bb30861f03e9" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello_world_pocFlow" doc:id="08c9cd4a-885c-4ea5-b48e-4e6f56fa5f21" >
+		<http:listener doc:name="Listener" doc:id="4c445d11-35b2-49d2-8e57-6527ce754b8b" config-ref="HTTP_Listener_config" path="/hello"/>
+		<set-payload value='#["welcome to sstech"]' doc:name="Set Payload" doc:id="2ddc8880-fb82-4de7-b4a7-05972bc71a50" />
+		<logger level="INFO" doc:name="Logger" doc:id="b311f069-bcf7-4157-b04a-db9ce7fa0e8a" message="#[payload]"/>
+	</flow>
+</mule>
